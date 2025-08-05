@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naz Pastry - Kedai Pastri Terbaik Sejak 1999</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Comic Sans MS', 'Marker Felt', 'Arial Rounded MT Bold', sans-serif;
+        }
+
+        :root {
+            --primary: #ff6b8b;
+            --secondary: #4ecdc4;
+            --accent: #ffd166;
+            --dark: #1a535c;
+            --light: #f7fff7;
+            --pink: #ff9aa2;
+            --blue: #6a9eff;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fff5e6, #fff0f5);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            padding: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            height: 80px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .logo-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            letter-spacing: 2px;
+        }
+
+        .logo-text span {
+            color: var(--dark);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="none" width="100" height="100"/><path fill="%23ffd166" opacity="0.2" d="M20,20 Q40,5 50,30 T80,20 Q95,40 80,60 T50,80 Q40,95 20,80 Q5,60 20,40Z"/></svg>');
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .product-fact {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 15px;
+            flex-grow: 1;
+            border-left: 3px solid var(--secondary);
+        }
+
+        .cta-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .whatsapp-btn:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+
+        .whatsapp-btn i {
+            font-size: 1.2rem;
+        }
+
+        .social-section {
+            background: linear-gradient(135deg, var(--dark), #2a7a8c);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            border-radius: 20px;
+            margin: 3rem auto;
+            max-width: 1000px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-section:before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            transform: rotate(30deg);
+        }
+
+        .social-title {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .social-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            z-index: 2;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-10px) scale(1.1);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .social-icon i {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .social-icon span {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .social-icon.facebook i { color: #1877F2; }
+        .social-icon.instagram i { 
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .social-icon.tiktok i { color: #000; }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            margin: 1.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .year-established {
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .logo-text {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .social-icons {
+                gap: 15px;
+            }
+            
+            .social-icon {
+                width: 85px;
+                height: 85px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .cta-container {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .social-icon {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .social-icon i {
+                font-size: 2rem;
+            }
+            
+            .logo-img {
+                height: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://raw.githubusercontent.com/NazPastry/LogoKedai/main/logo%20naz.jpg" alt="Logo Naz Pastry" class="logo-img">
+            <div class="logo-text">NAZ <span>PASTRY</span></div>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Pastri Istimewa Penuh Rasa & Kreativiti!</h1>
+        <p>Dibuat dengan penuh kasih sayang untuk memenuhi impian manis anda. Setiap gigitan membawa kebahagiaan!</p>
+    </div>
+
+    <section id="products">
+        <h2 class="section-title">Produk Terlaris Kami</h2>
+        
+        <div class="products-grid">
+            <!-- Kek Merdeka -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/kek_merdeka.jpg" alt="Kek Merdeka" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Kek Merdeka</h3>
+                    <p class="product-fact">🎉 Kek istimewa sempena Hari Kebangsaan! Penuh dengan warna bendera Malaysia. 
+                    Sempurna untuk sambutan Merdeka bersama keluarga! Setiap lapisan penuh rasa patriotik 😊</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Kek%20Merdeka" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Kek%20Merdeka" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Apple Pie -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/apple%20pie.jpg" alt="Apple Pie" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Pi Apple</h3>
+                    <p class="product-fact">🍏 Pi apple rangup dengan inti epal manis dan masam! 
+                    Sedap dimakan panas-panas dengan ais krim vanila. Resipi rahsia dari nenek! 
+                    Pasti jadi kegemaran seluruh keluarga 🤤</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Pi%20Apple" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Pi%20Apple" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birthday Cake 1 -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/birthday%20cake%201.jpg" alt="Kek Hari Jadi" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Kek Hari Jadi Kartun</h3>
+                    <p class="product-fact">🎂 Kek hari jadi dengan tema kartun kegemaran anak anda! 
+                    Watak-watak popular yang pasti membuatkan mereka teruja. 
+                    Setiap kek dibuat khas mengikut permintaan. Pasti jadi bualan di majlis nanti! 🥳</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Kek%20Hari%20Jadi%20Kartun" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Kek%20Hari%20Jadi%20Kartun" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birthday Cake Advanced 2 -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/birthday%20cake%20advanced%202.jpg" alt="Kek Hari Jadi Kartun" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Kek Kartun 3D</h3>
+                    <p class="product-fact">🌟 Kek hari jadi versi kartun yang lebih menarik dan kreatif! 
+                    Dengan watak 3D yang comel dan penuh warna. Sesuai untuk semua peringkat umur. 
+                    Pasti membuatkan majlis anda lebih istimewa! ✨</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Kek%20Kartun%203D" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Kek%20Kartun%203D" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birthday Cake Advanced 3 -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/birthday%20cake%20advanced%203.jpg" alt="Kek Hari Jadi Comel" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Kek Kartun Comel</h3>
+                    <p class="product-fact">🐰 Kek hari jadi versi kartun comel! Dengan watak-watak menggemaskan 
+                    yang pasti membuatkan kanak-kanak teruja. Setiap butiran dibuat dengan teliti 
+                    untuk hasil yang sempurna. Manis di mata, sedap di mulut! 🍭</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Kek%20Kartun%20Comel" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Kek%20Kartun%20Comel" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Birthday Cake Advanced -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/birthday%20cake%20advanced.jpg" alt="Kek Hari Jadi Karikatur Jepun" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Kek Karikatur Jepun</h3>
+                    <p class="product-fact">🌸 Kek hari jadi bertemakan karikatur Jepun yang unik dan menarik! 
+                    Sesuai untuk remaja dan pencinta budaya Jepun. Dengan reka bentuk yang kreatif 
+                    dan rasa yang istimewa. Pasti memukau tetamu anda! 🎎</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Kek%20Karikatur%20Jepun" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Kek%20Karikatur%20Jepun" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cup Cake 1 -->
+            <div class="product-card">
+                <img src="https://raw.githubusercontent.com/NazPastry/PastryProductImage/main/cup%20cake%201.jpg" alt="Cup Cake" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-name">Cup Cake Comel</h3>
+                    <p class="product-fact">🧁 Cup cake comel dengan hiasan yang menarik! 
+                    Sesuai untuk jamuan kecil, sambutan atau sebagai hadiah. 
+                    Pelbagai perisa sedap seperti coklat, vanila, strawberi dan banyak lagi. 
+                    Manis yang saiznya sempurna! 💖</p>
+                    <div class="cta-container">
+                        <a href="https://wa.me/60124568176?text=Saya%20ingin%20memesan%20Cup%20Cake%20Comel" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Naz
+                        </a>
+                        <a href="https://wa.me/60143082860?text=Saya%20ingin%20memesan%20Cup%20Cake%20Comel" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Chef Atikah
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-section">
+        <h2 class="social-title">Jom Follow Kami!</h2>
+        <p class="social-subtitle">Ikuti perkembangan terkini, promosi istimewa dan tips menarik tentang pastri di media sosial kami</p>
+        
+        <div class="social-icons">
+            <a href="https://www.facebook.com/NazPastry" target="_blank" class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.instagram.com/accounts/login/?next=%2Fnazpastry__%2F&source=omni_redirect" target="_blank" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+            <a href="https://www.tiktok.com/@nazpastry" target="_blank" class="social-icon tiktok">
+                <i class="fab fa-tiktok"></i>
+                <span>TikTok</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo-container">
+                <img src="https://raw.githubusercontent.com/NazPastry/LogoKedai/main/logo%20naz.jpg" alt="Logo Naz Pastry" class="logo-img">
+                <div class="logo-text">NAZ PASTRY</div>
+            </div>
+            
+            <div class="year-established">Menyediakan pastri terbaik sejak tahun 1999</div>
+            
+            <div class="contact-info">
+                <p><i class="fas fa-phone-alt"></i> Chef Naz: 012-4568176</p>
+                <p><i class="fas fa-phone-alt"></i> Chef Atikah: 014-3082860</p>
+            </div>
+            
+            <p>© 2023 Naz Pastry. Hak Cipta Terpelihara.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animasi sederhana untuk elemen saat muncul di layar
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            // Animasikan semua produk card
+            document.querySelectorAll('.product-card').forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+            
+            // Animasikan social section
+            const socialSection = document.querySelector('.social-section');
+            socialSection.style.opacity = 0;
+            socialSection.style.transform = 'translateY(30px)';
+            socialSection.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            observer.observe(socialSection);
+            
+            // Animasi logo saat halaman dimuat
+            const logoImg = document.querySelector('.logo-img');
+            logoImg.style.transform = 'scale(0)';
+            logoImg.style.transition = 'transform 0.8s ease-out';
+            
+            setTimeout(() => {
+                logoImg.style.transform = 'scale(1) rotate(360deg)';
+            }, 300);
+        });
+    </script>
+</body>
+</html>
